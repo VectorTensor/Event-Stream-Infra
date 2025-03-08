@@ -1,4 +1,4 @@
 
-zip lambda/transform_job.zip lambda/transform_job.py
+zip transform_job.zip hello.py
 
 terraform apply

@@ -54,9 +54,9 @@ resource "aws_iam_role_policy_attachment" "lambda-transformation-role-awslambdab
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 resource "aws_lambda_function" "transform_lambda_function"{
-  filename = "lambda/transform_job.zip"
-  source_code_hash = filebase64sha256("lambda/transform_job.zip")
-  handler = "transform_job.lambda_handler"
+  filename = "transform_job.zip"
+  source_code_hash = filebase64sha256("transform_job.zip")
+  handler = "hello.lambda_handler"
   function_name = "transform_function_firehose_p64"
   runtime = "python3.9"
   role = aws_iam_role.lambda-role.arn
