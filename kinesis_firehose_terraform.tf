@@ -23,10 +23,10 @@ resource "aws_iam_policy" "firehose-policy" {
     {
       Effect   = "Allow"
       Action   = [
-        "s3:PutObject",
-        "s3:PutObjectAcl"
+        "s3:*",
+        "s3-object-lambda:*"
       ]
-      Resource = "arn:aws:s3:::my-kinesis-data-bucket/*"
+      Resource = "*"
     },
     {
       Effect   = "Allow"
@@ -35,7 +35,14 @@ resource "aws_iam_policy" "firehose-policy" {
         "logs:CreateLogStream",
         "logs:CreateLogGroup"
       ]
-      Resource = "arn:aws:logs:us-east-1:123456789012:log-group:/aws/kinesisfirehose/my-firehose:*"
+      Resource = "*"
+    },
+    {
+      Effect   = "Allow"
+      Action   = [
+      "lambda:InvokeFunction"
+      ]
+      Resource = "*"
     }
   ]
 })
