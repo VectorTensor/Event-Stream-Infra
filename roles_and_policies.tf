@@ -49,3 +49,24 @@ resource "aws_iam_policy" "firehose-policy" {
 
 }
 
+
+resource "aws_iam_role_policy_attachment" "firehose_policy_attach"{
+  role = aws_iam_role.firehose_role.name
+  policy_arn = aws_iam_policy.firehose-policy.arn
+}
+
+resource "aws_iam_role" "lambda-role"{
+  name = "lambda-role-transformation"
+  assume_role_policy = file("configs/lambda_role_config.json")
+
+}
+resource "aws_iam_role_policy_attachment" "lambda-transformation-role-attach"{
+  role = aws_iam_role.lambda-role.name
+  policy_arn = aws_iam_policy.firehose-policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "lambda-transformation-role-awslambdabasic-attach"{
+  role = aws_iam_role.lambda-role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
