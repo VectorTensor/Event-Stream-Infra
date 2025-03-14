@@ -35,6 +35,7 @@ The stream transformation is done using lambda function hello.py modify the func
 3. Zip the lambda function and Apply the configuration:
    ```sh
    ./infra-build.sh
+   terraform apply
    ```
 
 4. To destroy the resources:
